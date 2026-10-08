@@ -1,5 +1,3 @@
-/* Landing-page background: faint atoms with electrons on tilted orbits, drifting slowly.
-   Quiet by design: low opacity, pauses off-screen, and draws one still frame if the visitor prefers reduced motion. */
 (()=>{
 const hero=document.querySelector('.hero');if(!hero)return;
 const cv=document.createElement('canvas');cv.id='bg';cv.setAttribute('aria-hidden','true');hero.prepend(cv);
