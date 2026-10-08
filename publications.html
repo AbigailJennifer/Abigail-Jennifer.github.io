@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publications | Abigail Jennifer</title>
+<meta name="description" content="Publications, spotlight summaries and conference record of Abigail Jennifer.">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body><div id="nav"></div>
+<header class="pagehead"><div class="wrap"><h1>Publications</h1><p class="lead">Papers in actinide chemistry, nuclear waste separation, chemical education and collaborations.</p></div></header>
+<section id="spot"><div class="wrap">
+<h2>Spotlight: my papers in plain words</h2>
+<p class="lead">Six first-author papers, explained without the jargon. Scroll sideways or use the arrows.</p>
+<div class="rail" id="rail" tabindex="0" aria-label="Spotlight papers"></div>
+<div class="ctl"><button id="prev" aria-label="Previous paper">&#8592;</button><button id="next" aria-label="Next paper">&#8594;</button><div class="dots" id="dots"></div></div>
+</div></section>
+
+<section id="pubs"><div class="wrap">
+<h2>Publications</h2>
+<p class="lead"><span id="count"></span> Full record on <a href="https://scholar.google.com/citations?user=2FKmi5EAAAAJ&hl=en">Google Scholar</a>, <a href="https://orcid.org/0000-0002-5809-1916">ORCID</a>, <a href="https://www.webofscience.com/wos/author/record/AGW-5865-2022">Web of Science</a> and <a href="https://www.researchgate.net/profile/Abigail-Jennifer-G">ResearchGate</a>.</p>
+<div class="filters" id="filters" role="group" aria-label="Filter publications"></div>
+<div id="list"></div>
+</div></section>
+
+<section id="conf"><div class="wrap">
+<h2>Conferences, workshops and symposiums</h2>
+<p class="lead">Where I presented, attended and learned. Each entry has room for what I took away, and any award.</p>
+<div class="filters" id="cf" role="group" aria-label="Filter conferences"></div>
+<div id="cl"></div>
+</div></section>
+
+
+<div id="foot"></div>
+<script src="site.js"></script>
+<script>
+const S=[
+["Nuclear waste","Americium and curium are chemical near-twins found in used nuclear fuel, and telling them apart is one of the hardest jobs in waste cleanup. I used computer models to test whether a redesigned ring-shaped molecule could hold on to one and let go of the other.","Computational Study of Core Modified Dipyriamethyrin for the Competitive Complexation of Am3+/Cm3+","Dalton Transactions, 2024","10.1039/D4DT00395K"],
+["Unusual chemistry","Heavy elements like uranium usually appear in electron-poor forms. This paper asks the opposite question: can a custom molecular pocket stabilize them in a rare, electron-rich +2 state, and what does that do to their bonds?","Actinide(II) Dioxo Stabilization in the Dipyriamethyrin Ligand Environment","Inorganic Chemistry, 2025","10.1021/acs.inorgchem.4c05176"],
+["Periodic table trends","Moving across the actinide row, the elements change character. Using one molecule as a fixed test bench, I looked at how each element copes with high oxidation states, to see which patterns hold up.","Periodic Trends in the Stabilization of Actinyl in Their Higher Oxidation States Using Pyrrophen Ligand","Inorganic Chemistry, 2023","10.1021/acs.inorgchem.3c00022"],
+["Chemical bonding","How do the bonds between a heavy metal and oxygen change from americium to californium? I looked at the electrons holding them together, which lets us study elements that are far too hazardous and scarce to handle in most labs.","Chemical Bonding in Actinyl (V/VI) Dipyriamethyrin Complexes for the Actinide Series from Americium to Californium","Dalton Transactions, 2022","10.1039/D2DT01142E"],
+["Look-alike metals","Americium and europium behave so similarly that separating them from waste is tricky. I modelled a designed molecule to see whether it could pick out americium from the mix.","Selective Complexation of Trivalent Americium over Europium with Substituted Triazolebipyridine-based Ligand in High Level-Liquid Waste","Polyhedron, 2022","10.1016/j.poly.2022.115832"],
+["Beyond the molecule","My first paper was not about atoms at all. When classes moved online in 2020, we asked students how chemistry learning actually felt, and listened to what they said.","Students' Reflections on Pandemic Impacted Chemistry Learning","Journal of Chemical Education, 2020","10.1021/acs.jchemed.0c00613"]];
+const rail=$('#rail'),dots=$('#dots');
+S.forEach((s,i)=>{rail.insertAdjacentHTML('beforeend',`<article class="slide"><span class="tag">${s[0]}</span><q>${s[1]}</q><p>${s[2]}. ${s[3]}.</p><a href="https://doi.org/${s[4]}">Read the paper</a></article>`);dots.insertAdjacentHTML('beforeend','<i></i>')});
+const sl=[...rail.children],dt=[...dots.children];
+const go=d=>{const w=sl[0].offsetWidth+18;rail.scrollBy({left:d*w,behavior:'smooth'})};
+$('#prev').onclick=()=>go(-1);$('#next').onclick=()=>go(1);
+const upd=()=>{const i=Math.round(rail.scrollLeft/(sl[0].offsetWidth+18));dt.forEach((d,k)=>d.classList.toggle('on',k===i))};
+rail.addEventListener('scroll',upd);upd();
+/* publications: year|first author(f)/coauthor(c)|topic A=actinide E=education O=other|title|journal|link */
+const D="2025|f|A|Actinide(II) Dioxo Stabilization in the Dipyriamethyrin Ligand Environment: A DFT Study|Inorganic Chemistry 64(13), 6476|10.1021/acs.inorgchem.4c05176\n2025|c|O|Exploring the Dual Aspects of Sapindus Mukorossi Pod as a Novel Sustainable Biosurfactant-Based Corrosion Inhibitor for Carbon Steel in Saline Environment|Journal of Molecular Structure 1337, 142065|https://www.sciencedirect.com/science/article/pii/S0022286025007501\n2024|f|A|High-Valent Actinyl (AnO2; An = U, Np and Pu) Complexation with TEtraQuinoline (TEQ) Ligand: A DFT Study|Physical Chemistry Chemical Physics 26(36), 23739|10.1039/D4CP01539H\n2024|f|A|Computational Study of Core Modified Dipyriamethyrin for the Competitive Complexation of Am3+/Cm3+ from their Trichlorides|Dalton Transactions 53(18), 7899|10.1039/D4DT00395K\n2024|c|O|Unraveling the Role of Nonplanarity of Free Base Porphyrins in Intermolecular Hydrogen Bonding Interactions with Phenols|Journal of Molecular Structure 1316, 138879|10.1016/j.molstruc.2024.138879\n2024|c|O|Bifunctional Properties of Acacia Concinna Pod as a Natural Surfactant-Based Eco-Friendly Benign Corrosion Inhibitor Towards Carbon Steel Protection in Saline Medium|Journal of Environmental Chemical Engineering 12(2), 111947|10.1016/j.jece.2024.111947\n2024|c|A|Elucidation on the Extraction of Trivalent Actinides using DOHyA-HDEHP System: An Experimental and Theoretical Approach|Physical Chemistry Chemical Physics 26(17), 13279|10.1039/D4CP01012D\n2023|f|A|Periodic Trends in the Stabilization of Actinyl in Their Higher Oxidation States Using Pyrrophen Ligand|Inorganic Chemistry 62(18), 6920|10.1021/acs.inorgchem.3c00022\n2023|c|O|Polarity-Induced Morphological Transformation with Tunable Optical Output of Terpyridine-Phenanthro[9,10-d]Imidazole-Based Ligand and its Zn(II) Complexes with I-V Characteristics|ACS Omega 8(51), 48855|10.1021/acsomega.3c06283\n2023|c|O|Supramolecular Cocrystals of dispiro-P3N3-Dicarboxylic Acid: Synthesis, Structural Characterization and Hirshfeld Surface Analysis|Journal of Molecular Structure 1289, 135888|10.1016/j.molstruc.2023.135888\n2023|c|O|Structure-Aromaticity Spectroscopy Relationship in Conjugated Polymers|Theoretical Chemistry Accounts 142, 51|10.1007/s00214-023-02989-8\n2023|c|O|Improving the TADF in Corannulene Based Emitters via Tuning the Strength of Donor and Acceptor Groups|Advanced Theory and Simulations 6(4), 2200850|10.1002/adts.202200850\n2023|c|A|Understanding the Coordination Chemistry of AmIII/CmIII in the DOTA Cavity: Insights from Energetics and Electronic Structure Theory|Inorganic Chemistry 62(7), 3229|10.1021/acs.inorgchem.2c04235\n2023|c|O|A Site-Isolated Lewis Acidic Aluminium and Bronsted Basic Amine Sites in Dimeric Silsesquioxane Cage as a Reusable Homogeneous Bifunctional Catalyst|New Journal of Chemistry 47(17), 8439|10.1039/D3NJ00276D\n2022|f|A|Chemical Bonding in Actinyl (V/VI) Dipyriamethyrin Complexes for the Actinide Series from Americium to Californium: A Computational Investigation|Dalton Transactions 51(26), 10006|10.1039/D2DT01142E\n2022|f|A|Selective Complexation of Trivalent Americium over Europium with Substituted Triazolebipyridine-based Ligand in High Level-Liquid Waste: A DFT Investigation|Polyhedron 220, 115832|10.1016/j.poly.2022.115832\n2022|f|E|Chemistry Innovations and Ideas from the Classroom to the Real World: The Students' Perspective on Becoming a Chemistry Entrepreneur|Journal of Chemical Education 99(4), 1556|10.1021/acs.jchemed.1c00133\n2022|f|E|Does Virtual Titration Experiment Meet Students' Expectation? Inside Out from Indian Context|Journal of Chemical Education 99(3), 1280|10.1021/acs.jchemed.1c01034\n2022|c|O|Experimental Investigation into the pi-Conjugated HT-gC3N4/MoS2 (X) Evokes the Electron Transport in Type-II Heterojunction for Photocatalytic Antibiotic Removal|Separation and Purification Technology 292, 121028|10.1016/j.seppur.2022.121028\n2022|c|O|Iodosulphonylation of 1,6-Enynones: A Metal-Free Strategy to Synthesize N-Substituted Succinimides|Organic & Biomolecular Chemistry 20(40), 7942|10.1039/D2OB01277D\n2022|c|O|Design and Development of Imidazo[4,5-f][1,10]Phenanthroline-Zn(II) Based Fluorescent Probes for Specific Recognition of ATP|New Journal of Chemistry 46(48), 23139|10.1039/D2NJ04704G\n2020|f|E|Students' Reflections on Pandemic Impacted Chemistry Learning|Journal of Chemical Education 97(9), 3327|10.1021/acs.jchemed.0c00613";
+const P=D.split('\n').map(l=>{const a=l.split('|');return{y:a[0],f:a[1]==='f',t:a[2],ti:a[3],j:a[4],u:a[5].startsWith('http')?a[5]:'https://doi.org/'+a[5]}});
+const F=[['All',()=>1],['First author',p=>p.f],['Actinide chemistry',p=>p.t==='A'],['Chemical education',p=>p.t==='E'],['Collaborations',p=>!p.f]];
+$('#count').textContent=`${P.length} papers, ${P.filter(p=>p.f).length} as first author.`;
+const fb=$('#filters'),list=$('#list');
+function draw(k){fb.innerHTML='';F.forEach((f,i)=>{const b=document.createElement('button');b.textContent=f[0];b.setAttribute('aria-pressed',i===k);b.onclick=()=>draw(i);fb.append(b)});
+let h='',y='';P.filter(F[k][1]).sort((a,b)=>b.y-a.y).forEach(p=>{if(p.y!==y){y=p.y;h+=`<div class="yr">${y}</div>`}h+=`<div class="pub"><a class="t" href="${p.u}">${p.ti}</a>${p.f?'<span class="badge">First author</span>':'<span></span>'}<span class="j">${p.j}</span></div>`});list.innerHTML=h}
+draw(0);
+
+
+/* conference: date|name|place|P(resented) or A(ttended)|what I contributed|award|my experience and learning (write between the last bars) */
+const C=`May 25-30, 2026|IITM Workshop on Theoretical and Computational Chemistry (IWTC2): Density Functional Theory|Department of Chemistry, IIT Madras|A|||
+Dec 2-5, 2025|Theoretical Chemistry Symposium (TCS) 2025|VMCC, IIT Bombay|A|||
+Oct 6-28, 2025|Introduction to Time-Dependent Density-Functional Theory (TDDFT), Prof. Carsten A. Ullrich|Department of Physics, IIT Madras|A|||
+Sep 25-Oct 4, 2023|Next-generation Atomistic Modelling and Simulations with AMS software|Virtual, organized by Nyro Research India|A|||
+May 30-Jun 15, 2023|Innovation Training 2023|Virtual, Women in Nuclear Innovation (WiNI), WiN Global|A|||
+Mar 29-31, 2023|Dr. Paarivendhar Research Colloquium (DPRC)|SRM Institute, Kattankulathur|A|||
+Feb 28, 2023|Research Day 2023|SRM Institute, Kattankulathur|P|Poster: role of oxygen substitution in competitive Am3+/Cm3+ trichloride complexation||
+Feb 16-18, 2023|7th International Conference on Recent Advances in Materials Chemistry (ICRAMC) 2023|SRM Institute, Kattankulathur|P|Poster: complexation of high-valent actinyls (U to Am) with an N,O mixed ligand||
+Jan 23, 2023|Anveshan Student Research Convention 2023, Project Selection Expo in Basic Sciences|SRM Institute, organized by the Association of Indian Universities|P|Project: macrocyclic chelators for selective actinide complexation over lanthanides||
+Sep 22-24, 2022|Current Trends in Theoretical Chemistry (CTTC) 2022|DAE-BRNS, BARC, Mumbai|P|Poster: chemical bonding in actinyl(V/VI) dipyriamethyrin complexes, Am to Cf||
+Mar 24-26, 2022|Dr. Paarivendhar Research Colloquium (DPRC)|SRM Institute, Kattankulathur|P|Poster: bonding in high-valent actinyl (Am, Cm, Bk, Cf) dipyriamethyrin complexes||
+Feb 28, 2022|Research Day 2022|SRM Institute, Kattankulathur|P|Poster: chemical bonding in actinyl(V/VI) dipyriamethyrin complexes, Am to Cf|Silver medal|
+Feb 17-19, 2022|6th International Conference on Recent Advances in Materials Chemistry (ICRAMC)|SRM Institute, Kattankulathur|P|Poster: oxygen substitution in dipyriamethyrin ligands for actinyl (U to Am) complexation||
+Feb 14, 2021|Anveshan Student Research Convention 2022, Project Selection Expo in Basic Sciences|SRM Institute, organized by the Association of Indian Universities|P|Project: computational design of chelators for actinium-225 radiotherapeutics||
+2019|Recent Advances in Nanomaterials Chemistry for Sustainable Development (RANCSD)|Madras Christian College|P|Oral presentation|Best Oral Presentation|`.split('\n').map(l=>{const a=l.split('|');return{d:a[0],n:a[1],l:a[2],r:a[3],c:a[4],w:a[5],x:a[6]}});
+const CF=[['All',()=>1],['Presented',c=>c.r==='P'],['Attended',c=>c.r==='A'],['With an award',c=>c.w]];
+function drawC(k){const b=$('#cf');b.innerHTML='';CF.forEach((f,i)=>{const e=document.createElement('button');e.textContent=f[0];e.setAttribute('aria-pressed',i===k);e.onclick=()=>drawC(i);b.append(e)});
+$('#cl').innerHTML=C.filter(CF[k][1]).map(c=>`<div class="conf"><div class="d">${c.d}</div><div><h3>${c.n}${c.w?`<span class="badge w">${c.w}</span>`:''}</h3><div class="m">${c.l}, ${c.r==='P'?'presented':'attended'}</div>${c.c?`<p class="c">${c.c}</p>`:''}${c.x?`<div class="note">${c.x}</div>`:SHOW_PLACEHOLDERS?'<div class="note ph">Add your experience, what you learned or what you contributed here.</div>':''}</div></div>`).join('')}
+drawC(0);
+
+</script>
+</body></html>
