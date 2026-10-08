@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"></head>
 <body id="top"><div id="nav"></div>
-<a id="dock" href="#top" aria-label="Back to top">AJ<img id="dk" alt=""></a>
 
 <header class="hero c"><div class="wrap">
 <div class="photo"><span class="orb"></span><span class="orb"></span><span class="orb o3"></span>
@@ -24,7 +23,8 @@
 
 <section class="s"><div class="wrap">
 <h2>News</h2>
-<div class="board" id="nw"></div>
+<div class="board" id="nw" tabindex="0" aria-label="News: swipe, drag or use the arrows"></div>
+<div class="nc"><button id="np" aria-label="Previous news">&#8592;</button><div class="nd" id="nd"></div><button id="nn" aria-label="Next news">&#8594;</button></div>
 </div></section>
 
 <section id="contact"><div class="wrap two">
@@ -42,11 +42,8 @@
 <script>
 /* ===== photo: tries these paths in order; keep your portrait at the first one ===== */
 const PH=["images/profile.jpeg","images/profile.jpg","images/profile.png","images/photo.jpg","images/photo.jpeg","images/photo.png","profile.jpg","profile.jpeg","profile.png","assets/images/profile.jpg","assets/images/profile.jpeg","assets/profile.jpg"];
-let pk=0;const pf=$("#pf"),dk=$("#dk");
-pf.addEventListener('load',()=>{dk.src=pf.src});
-pf.onerror=()=>{pk++;pk<PH.length?pf.src=PH[pk]:(pf.remove(),dk.remove())};pf.src=PH[0];
-/* docked avatar appears at top right once the big portrait scrolls out of view */
-new IntersectionObserver(e=>$('#dock').classList.toggle('on',!e[0].isIntersecting),{rootMargin:'-60px 0px 0px 0px'}).observe($('.photo'));
+let pk=0;const pf=$("#pf");
+pf.onerror=()=>{pk++;pk<PH.length?pf.src=PH[pk]:pf.remove()};pf.src=PH[0];
 
 /* ===== EDIT ME: news notice board. [date, text, optional image path, optional link] ===== */
 const N=[
@@ -57,6 +54,23 @@ const N=[
 ["May 2025","PhD viva voce completed at SRM Institute","",""],
 ["2025","New paper: Actinide(II) dioxo stabilization, Inorganic Chemistry","","https://doi.org/10.1021/acs.inorgchem.4c05176"]];
 $('#nw').innerHTML=N.map(n=>`<article class="pin">${n[2]?`<img src="${n[2]}" alt="" onerror="this.remove()">`:''}<time>${n[0]}</time><p>${n[1]}</p>${n[3]?`<a href="${n[3]}">Read more</a>`:''}</article>`).join('');
+
+
+/* news carousel: three cards per view, swipe, drag or use the arrows for the rest */
+{const bd=$('#nw'),np=$('#np'),nn=$('#nn'),nd=$('#nd');
+const step=()=>bd.clientWidth+22,per=()=>Math.max(1,Math.round((bd.clientWidth+22)/(bd.firstElementChild.offsetWidth+22)));
+const upd=()=>{const pg=Math.ceil(N.length/per());if(nd.children.length!==pg)nd.innerHTML='<i></i>'.repeat(pg);
+ const i=Math.round(bd.scrollLeft/step());[...nd.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+ np.disabled=bd.scrollLeft<4;nn.disabled=bd.scrollLeft+bd.clientWidth>=bd.scrollWidth-4;
+ document.querySelector('.nc').style.display=pg>1?'flex':'none'};
+np.onclick=()=>bd.scrollBy({left:-step(),behavior:'smooth'});nn.onclick=()=>bd.scrollBy({left:step(),behavior:'smooth'});
+bd.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+bd.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nn.click();if(e.key==='ArrowLeft')np.click()});
+let dn=false,sx=0,sl=0,mv=false;
+bd.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dn=true;mv=false;sx=e.clientX;sl=bd.scrollLeft});
+addEventListener('pointermove',e=>{if(!dn)return;const d=e.clientX-sx;if(Math.abs(d)>5){mv=true;bd.style.scrollSnapType='none';bd.classList.add('dr')}if(mv)bd.scrollLeft=sl-d});
+addEventListener('pointerup',()=>{if(!dn)return;dn=false;bd.classList.remove('dr');if(mv){const w=step();bd.scrollTo({left:Math.round(bd.scrollLeft/w)*w,behavior:'smooth'});setTimeout(()=>{bd.style.scrollSnapType=''},400)}});
+bd.addEventListener('click',e=>{if(mv){e.preventDefault();e.stopPropagation();mv=false}},true)}
 
 /* ===== social icons: replace the X and Bluesky handles with your own ===== */
 const SOC=[
