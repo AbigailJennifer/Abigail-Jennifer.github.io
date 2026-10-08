@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Abigail Jennifer</title>
+<meta name="description" content="Abigail Jennifer, ANRF National Postdoctoral Fellow at IIT Madras. Electronic structure theory of actinides and lanthanides.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body id="top"><div id="nav"></div>
+<a id="dock" href="#top" aria-label="Back to top">AJ<img id="dk" alt=""></a>
+
+<header class="hero c"><div class="wrap">
+<div class="photo"><span class="orb"></span><span class="orb"></span><span class="orb o3"></span>
+<div class="frame">AJ<img id="pf" alt="Portrait of Abigail Jennifer"></div></div>
+<h1>Hi, I'm Abigail.</h1>
+<div class="role">ANRF - National Postdoctoral Fellow at IIT-Madras</div>
+<div class="wr">
+<p>I grew up wanting to know why things behave the way they do, and chemistry gave me a language for it. I finished my PhD in May 2025 at SRM Institute of Science and Technology, where my thesis explored how electrons shape the chemistry of actinide complexes across the periodic table. Along the way I spent time in Prof. Georg Schreckenbach's group at the University of Manitoba on a Mitacs Globalink award.</p>
+<p>Today I work in Dr. Soumen Ghosh's Electronic Structure Theory group at IIT Madras, simulating how heavy elements absorb X-rays. I also care about teaching: I have taught undergraduates and run science camps for children in tribal communities in Tamil Nadu and the Nilgiris.</p>
+<p class="sm">Electronic Structure Theory Lab, Department of Chemistry, IIT Madras, Chennai 600 036</p>
+</div>
+<div class="btns"><a class="btn p" href="#contact">Get in touch</a></div>
+</div></header>
+
+<section class="s"><div class="wrap">
+<h2>News</h2>
+<div class="board" id="nw"></div>
+</div></section>
+
+<section id="contact"><div class="wrap two">
+<div><h2>Let's talk</h2><p class="lead">Collaborations, questions about heavy-element chemistry, or teaching ideas are all welcome.</p>
+<a href="mailto:abigailjennifer.g@gmail.com" style="font:700 clamp(18px,2.6vw,26px) var(--h);word-break:break-all">abigailjennifer.g@gmail.com</a>
+<div class="soc" id="soc"></div></div>
+<form class="fg" id="cf"><div><label for="n">Your name</label><input id="n" required></div><div><label for="e">Your email</label><input id="e" type="email" required></div><div><label for="s">Subject</label><input id="s"></div><div><label for="m">Message</label><textarea id="m" rows="5" required></textarea></div>
+<button class="btn p" type="submit" style="cursor:pointer">Send email</button><span class="sm">This opens your email app with the message ready to send.</span></form>
+</div></section>
+
+<div id="info"><div class="pop" id="pop" role="status"><b>Last updated</b><p id="lud"></p></div><button id="ib" aria-label="When was this site last updated?" aria-expanded="false" aria-controls="pop">i</button></div>
+
+<div id="foot"></div>
+<script src="site.js"></script>
+<script>
+/* ===== photo: tries these paths in order; keep your portrait at the first one ===== */
+const PH=["images/profile.jpeg","images/profile.jpg","images/profile.png","images/photo.jpg","images/photo.jpeg","images/photo.png","profile.jpg","profile.jpeg","profile.png","assets/images/profile.jpg","assets/images/profile.jpeg","assets/profile.jpg"];
+let pk=0;const pf=$("#pf"),dk=$("#dk");
+pf.addEventListener('load',()=>{dk.src=pf.src});
+pf.onerror=()=>{pk++;pk<PH.length?pf.src=PH[pk]:(pf.remove(),dk.remove())};pf.src=PH[0];
+/* docked avatar appears at top right once the big portrait scrolls out of view */
+new IntersectionObserver(e=>$('#dock').classList.toggle('on',!e[0].isIntersecting),{rootMargin:'-60px 0px 0px 0px'}).observe($('.photo'));
+
+/* ===== EDIT ME: news notice board. [date, text, optional image path, optional link] ===== */
+const N=[
+["2026","Named to the CAS Future Leaders Program Top 100","images/news-cas.jpg",""],
+["May 2026","Attended the IITM Workshop on Theoretical and Computational Chemistry (DFT)","",""],
+["Dec 2025","Theoretical Chemistry Symposium, IIT Bombay","",""],
+["Oct 2025","Joined the Electronic Structure Theory group at IIT Madras","images/news-iitm.jpg",""],
+["May 2025","PhD viva voce completed at SRM Institute","",""],
+["2025","New paper: Actinide(II) dioxo stabilization, Inorganic Chemistry","","https://doi.org/10.1021/acs.inorgchem.4c05176"]];
+$('#nw').innerHTML=N.map(n=>`<article class="pin">${n[2]?`<img src="${n[2]}" alt="" onerror="this.remove()">`:''}<time>${n[0]}</time><p>${n[1]}</p>${n[3]?`<a href="${n[3]}">Read more</a>`:''}</article>`).join('');
+
+/* ===== social icons: replace the X and Bluesky handles with your own ===== */
+const SOC=[
+["GitHub","https://github.com/AbigailJennifer","M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"],
+["LinkedIn","https://in.linkedin.com/in/abigail-jennifer-80b864189","M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"],
+["X (Twitter)","https://x.com/YOUR_HANDLE","M18.9 1.2h3.7l-8 9.2L24 22.8h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"],
+["Bluesky","https://bsky.app/profile/YOUR_HANDLE.bsky.social","M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"]];
+$('#soc').innerHTML=SOC.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener" aria-label="${s[0]}" title="${s[0]}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${s[2]}"/></svg></a>`).join('');
+
+/* ===== contact form opens the visitor's email app ===== */
+$('#cf').onsubmit=e=>{e.preventDefault();location.href='mailto:abigailjennifer.g@gmail.com?subject='+encodeURIComponent($('#s').value||'Message from your website')+'&body='+encodeURIComponent($('#m').value+'\n\n'+$('#n').value+' ('+$('#e').value+')')};
+
+/* ===== last-updated pop-up (date and time come from LAST_UPDATED in site.js) ===== */
+$('#lud').textContent=LAST_UPDATED;
+const inf=$('#info'),ib=$('#ib');
+const tog=o=>{inf.classList.toggle('open',o);ib.setAttribute('aria-expanded',o)};
+ib.onclick=()=>tog(!inf.classList.contains('open'));
+document.addEventListener('click',e=>{if(!inf.contains(e.target))tog(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')tog(false)});
+</script>
+<script src="bg.js"></script>
+</body></html>
