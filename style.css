@@ -90,7 +90,13 @@ nav a:hover{color:var(--teal)}
 .badge.w{margin-left:8px;vertical-align:middle}
 .sc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
 .card a.go{display:inline-block;margin-top:12px;font:700 14px var(--h)}
-footer{padding:34px 0;text-align:center;color:var(--mut);font-size:14px}
+footer{
+  border-top: 1px solid var(--line);
+  padding: 34px 0;
+  text-align: center;
+  color: var(--mut);
+  font-size: 14px;
+}
 @media(max-width:800px){.conf{grid-template-columns:1fr}.hero .wrap,.two{grid-template-columns:1fr}.photo{max-width:280px;order:-1}section{padding:56px 0}nav b{display:none}}
 @media(prefers-reduced-motion:reduce){.mq{overflow-x:auto}*{animation:none!important;scroll-behavior:auto!important}}
 
