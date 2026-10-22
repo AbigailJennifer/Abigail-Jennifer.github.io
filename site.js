@@ -16,7 +16,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
 /* at the top the full page list shows; once you scroll it folds into the Menu button */
 const fold=()=>{const f=scrollY>40;navEl.classList.toggle('sc',f);if(!f)menu(false)};
 addEventListener('scroll',fold,{passive:true});fold();
-$('#foot').innerHTML='<footer>&copy; 2026 Abigail Jennifer. All Rights Reserved.</footer>';
+$('#foot').innerHTML='<footer>Copyright &copy; Abigail Jennifer G, 2026. All Rights Reserved.</footer>';
 const root=document.documentElement,tb=$('#th');
 try{const s=localStorage.getItem('theme');if(s)root.dataset.theme=s}catch(e){}
 tb.onclick=()=>{const d=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=d;try{localStorage.setItem('theme',d)}catch(e){}};
