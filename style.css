@@ -129,7 +129,23 @@ details ul{margin:6px 0 0;padding-left:20px}details li{margin:4px 0}
 .hero.c .photo{max-width:230px;margin:0 auto 34px}
 .hero.c .frame{font-size:64px}
 .hero.c .role{font-size:clamp(17px,2.4vw,22px)}
-.hero.c .wr{text-align:left;margin-top:26px}
+.hero.c .wr {
+  text-align: justify;
+  margin-top: 26px;
+}
+
+.hero.c .wr p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Use left alignment on small screens */
+@media (max-width: 600px) {
+  .hero.c .wr p {
+    text-align: left;
+  }
+}
 .hero.c .btns{justify-content:center}
 #dock{position:fixed;top:72px;right:16px;z-index:8;width:54px;height:54px;border-radius:50%;overflow:hidden;border:3px solid var(--card);box-shadow:0 8px 20px -8px rgba(0,0,0,.5);background:linear-gradient(135deg,var(--teal),var(--ink));color:#fff;font:800 18px/48px var(--h);text-align:center;text-decoration:none;opacity:0;transform:translateY(-10px) scale(.9);pointer-events:none;transition:.3s}
 #dock.on{opacity:1;transform:none;pointer-events:auto}
